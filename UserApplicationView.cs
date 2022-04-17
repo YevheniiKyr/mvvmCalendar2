@@ -84,7 +84,7 @@ namespace UserClnd
                 }
             }
          
-            public bool IsAdult
+            public bool? IsAdult
         {
             get
             {
@@ -94,7 +94,7 @@ namespace UserClnd
          
         }
 
-        public bool IsBirthday
+        public bool? IsBirthday
         {
             get
             {
@@ -177,6 +177,7 @@ namespace UserClnd
             private void calculateAll(DateTime dateTime)
             {
 
+                
                 OnPropertyChanged("Birthdate");
                 OnPropertyChanged("IsAdult");
                 OnPropertyChanged("IsBirthday");
@@ -194,7 +195,7 @@ namespace UserClnd
 
             private bool CanExecute(object obj)
             {
-                return true;
+                return Birthdate != DateTime.MinValue && Mail != "" && Name != "" && Surname != "" ;
             }
 
             
