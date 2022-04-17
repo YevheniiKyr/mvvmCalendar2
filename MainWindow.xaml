@@ -1,4 +1,4 @@
-﻿<Window x:Class="UserClnd.MainWindow"
+<Window x:Class="UserClnd.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DatePicker HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Height="31" Width="115" SelectedDate="{Binding Birthdate ,  UpdateSourceTrigger=PropertyChanged}"    />
+        <DatePicker HorizontalAlignment="Left" Margin="151,70,0,0" VerticalAlignment="Top" Height="31" Width="115"   SelectedDate="{Binding Birthdate , Mode = OneWayToSource, UpdateSourceTrigger=PropertyChanged}"    />
 
         <TextBlock HorizontalAlignment="Left" Margin="98,118,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Height="21" Width="42"/>
         <TextBlock HorizontalAlignment="Left" Margin="93,156,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
@@ -16,7 +16,7 @@
         
         <TextBlock HorizontalAlignment="Left" Margin="566,142,0,0" TextWrapping="Wrap" Text="Is adult" VerticalAlignment="Top" Height="21" Width="42"/>
         <TextBlock HorizontalAlignment="Left" Margin="548,169,0,0" TextWrapping="Wrap" Text="ChineseZodiac" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="571,197,0,0" TextWrapping="Wrap" Text="SunSign" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="565,197,0,0" TextWrapping="Wrap" Text="SunSign" VerticalAlignment="Top"/>
 
         <Button Content="Calculate" HorizontalAlignment="Left" Margin="151,268,0,0" VerticalAlignment="Top" Width="112" Command="{Binding CalculateCommand}" Height="52"  />
 
@@ -26,19 +26,20 @@
 
         <DatePicker HorizontalAlignment="Left" Height="23" Margin="644,308,0,0"  SelectedDate="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="False" VerticalAlignment="Top" Width="120" />
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,100,0,0" TextWrapping="Wrap" Text="{Binding IsBirthday, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,132,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding IsAdult, UpdateSourceTrigger=PropertyChanged}"  />
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding ChineseZodiac,  UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding WesternZodiac, UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding IsAdult, UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,169,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding ChineseZodiac,  UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,197,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding WesternZodiac, UpdateSourceTrigger=PropertyChanged}"  />
 
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,220,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,225,0,0" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
         <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,250,0,0" TextWrapping="Wrap" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,280,0,0" TextWrapping="Wrap" Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
+        <TextBlock HorizontalAlignment="Left" Height="23" Margin="644,278,0,0" TextWrapping="Wrap" Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
         
         
-        <TextBlock HorizontalAlignment="Left" Margin="566,220,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="565,250,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="566,280,0,0" TextWrapping="Wrap" Text="mail" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="566,315,0,0" TextWrapping="Wrap" Text="birthday" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="565,227,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="565,255,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="575,280,0,0" TextWrapping="Wrap" Text="mail" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="568,312,0,0" TextWrapping="Wrap" Text="birthday" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="566,107,0,0" TextWrapping="Wrap" Text="IsBirthday" VerticalAlignment="Top"/>
     </Grid>
 </Window>
+
