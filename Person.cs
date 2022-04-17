@@ -1,13 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace UserClnd
 {
     class Person
     {
+        private bool _firstStart = true;
         private string _name;
         private string _surname;
         private DateTime _birthdate;
@@ -16,6 +18,19 @@ namespace UserClnd
         private string _chineseSign;
         private bool? _isBirthday;
         private string _sunSign;
+        private int _age;
+
+        public int Age
+        {
+            get
+            {
+                return _age;
+            }
+            set
+            {
+                _age = value;
+            }
+        }
 
         private string[] ChineAstrology = {
             "Rat",
@@ -101,6 +116,7 @@ namespace UserClnd
             set
             {
                 _birthdate = value;
+                _firstStart = false;
                 _isAdult = null;
                 _chineseSign = null;
                 _sunSign = null;
@@ -108,11 +124,14 @@ namespace UserClnd
             }
         }
 
-        public bool IsAdult
+        public bool? IsAdult
         {
             get
             {
-                
+                if (_firstStart)
+                {
+                    return null;
+                }
              
                 return (bool)(_isAdult ?? (_isAdult = Task.Run(() => isAdult()).Result));
                 
@@ -123,18 +142,34 @@ namespace UserClnd
 
         public string ChineseSign
         {
+
             get
             {
+
+                if (_firstStart)
+                {
+                    return null;
+                }
+                if (_firstStart)
+                {
+                    _firstStart = false;
+                    return null;
+                }
                 //  return _chineseSign;
                 return _chineseSign ?? (_chineseSign = Task.Run(() => chineseSign(_birthdate)).Result);
             }
 
         }
 
-        public bool IsBirthday
+        public bool? IsBirthday
         {
             get
             {
+
+                if (_firstStart)
+                {
+                    return null;
+                }
                 return (bool)(_isBirthday ?? (_isBirthday = Task.Run(() => isBirthday()).Result));
             }
             // return DateTime.Now == _birthday;
@@ -147,6 +182,11 @@ namespace UserClnd
 
             get
             {
+
+                if (_firstStart)
+                {
+                    return null;
+                }
                 return _sunSign ?? (_sunSign = Task.Run(() => sunSign(_birthdate)).Result);
 
             }
@@ -186,20 +226,23 @@ namespace UserClnd
         
         private Boolean isAdult()
         {
-            if (DateTime.Now.Year > _birthdate.Year + 18) return true;
-            if (DateTime.Now.Year == _birthdate.Year + 18)
-            {
-                if (DateTime.Now.Month > _birthdate.Month)
-                {
-                    return true;
-                }
-                if (DateTime.Now.Month == _birthdate.Month)
-                {
-                    return (DateTime.Now.Day) >= _birthdate.Day;
-                }
 
-            }
-            return false;
+            /* if (DateTime.Now.Year > _birthdate.Year + 18) return true;
+             if (DateTime.Now.Year == _birthdate.Year + 18)
+             {
+                 if (DateTime.Now.Month > _birthdate.Month)
+                 {
+                     return true;
+                 }
+                 if (DateTime.Now.Month == _birthdate.Month)
+                 {
+                     return (DateTime.Now.Day) >= _birthdate.Day;
+                 }
+
+             }
+             return false;*/
+            if (Task.Run(() => this.calculateAge(_birthdate)).Result >= 18) return true;
+            else return false;
         }
 
         private string chineseSign(DateTime dateTime)
@@ -277,6 +320,33 @@ namespace UserClnd
             return sunsign;
 
 
+        }
+        public int calculateAge(DateTime dateTime)
+        {
+
+
+            int age = ((dateTime.Month > DateTime.Now.Month) || ((dateTime.Month == DateTime.Now.Month) && dateTime.Day >= DateTime.Now.Day)) ? ((DateTime.Now.Year - dateTime.Year) - 1) : ((DateTime.Now.Year - dateTime.Year));
+
+
+            if (age < 0)
+            {
+                MessageBox.Show("I hope you will born soon");
+                
+                
+            }
+            if (age > 135)
+            {
+                MessageBox.Show("Sorry, you are dead");
+                
+               
+            };
+            if (dateTime == DateTime.Now)
+            {
+                MessageBox.Show("Sorry, you are dead");
+            }
+            
+
+            return age;
         }
     }
 }
